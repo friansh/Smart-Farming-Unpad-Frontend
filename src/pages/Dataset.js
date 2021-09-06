@@ -6,8 +6,8 @@ import Table from "react-bootstrap/Table";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Badge from "react-bootstrap/Badge";
-
+import Dropdown from "react-bootstrap/Dropdown";
+import Swal from "sweetalert2";
 import { Link, useParams } from "react-router-dom";
 import Axios from "axios";
 
@@ -83,14 +83,6 @@ export default function Dataset() {
                 })}
               </tbody>
             </Table>
-          </Row>
-          <Row className="mt-2">
-            <Col md={9}></Col>
-            <Col md={3} as={Card} body>
-              <span>
-                Offline threshold: <b>15 minutes</b>
-              </span>
-            </Col>
           </Row>
         </Container>
       </div>
