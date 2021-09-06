@@ -1,17 +1,17 @@
 import { default as BootstrapNavbar } from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Container from "react-bootstrap/Container";
 
 import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
   return (
-    <BootstrapNavbar bg="dark" variant="dark">
-      <Container>
-        <BootstrapNavbar.Brand as={Link} to="/">
-          Smart Farming Unpad Portal
-        </BootstrapNavbar.Brand>
-        <Nav className="me-auto">
+    <BootstrapNavbar bg="dark" variant="dark" expand="lg">
+      <BootstrapNavbar.Brand as={Link} to="/">
+        Smart Farming Unpad
+      </BootstrapNavbar.Brand>
+      <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
+      <BootstrapNavbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
           <Nav.Link as={Link} to="/" active={props.HomeActive}>
             Home
           </Nav.Link>
@@ -22,7 +22,7 @@ export default function Navbar(props) {
             Data
           </Nav.Link>
         </Nav>
-      </Container>
+      </BootstrapNavbar.Collapse>
     </BootstrapNavbar>
   );
 }
