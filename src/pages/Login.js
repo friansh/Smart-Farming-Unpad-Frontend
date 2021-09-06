@@ -54,7 +54,13 @@ export default function Login() {
 
   return (
     <>
-      <div style={{ backgroundColor: "#bdc3c7", minHeight: "100vh" }}>
+      <div
+        style={{
+          backgroundColor: "#bdc3c7",
+          minHeight: "100vh",
+          paddingBottom: 20,
+        }}
+      >
         <Navbar />
         <Container className="mt-4">
           <Row>
@@ -66,13 +72,11 @@ export default function Login() {
                   front end is currently in development process.
                 </p>
               </Jumbotron>
-              <Card className="mt-3">
-                <Card.Body>
-                  <small>
-                    NodeMCU firmware, server MQTT engine, website backend, and
-                    this frontend created by <b>Fikri Rida Pebriansyah</b>
-                  </small>
-                </Card.Body>
+              <Card body className="mb-2">
+                <small>
+                  NodeMCU firmware, server MQTT engine, website backend, and
+                  this frontend created by <b>Fikri Rida Pebriansyah</b>
+                </small>
               </Card>
             </Col>
             <Col md={4}>
