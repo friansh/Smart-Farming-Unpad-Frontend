@@ -174,7 +174,7 @@ export default function Document() {
             <hr />
             <Container>
               <Row>
-                <Col as={Card}>
+                <Col as={Card} md={6} className="mb-3">
                   <Form className="m-3">
                     <h6 style={{ textAlign: "center" }}>Data Mapping</h6>
                     <Container className="mt-3">
@@ -242,7 +242,7 @@ export default function Document() {
                     </Container>
                   </Form>
                 </Col>
-                <Col>
+                <Col md={6} className="p-0">
                   <ButtonGroup className="float-right">
                     <Button
                       variant="danger"
