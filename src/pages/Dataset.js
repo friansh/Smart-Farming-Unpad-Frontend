@@ -4,10 +4,7 @@ import Navbar from "../components/Navbar";
 import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
 import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Dropdown from "react-bootstrap/Dropdown";
-import Swal from "sweetalert2";
 import { Link, useParams } from "react-router-dom";
 import Axios from "axios";
 
