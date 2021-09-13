@@ -13,7 +13,7 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-const apiUrl = "https://api.smartfarmingunpad.com";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 Axios.defaults.baseURL = apiUrl;
 
