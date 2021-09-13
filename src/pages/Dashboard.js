@@ -88,37 +88,49 @@ export default function Dashboard() {
       >
         <Navbar />
         <Container className="mt-3">
-          <Row as={Card} className="p-3">
-            <h3>All Dataset</h3>
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                {datasets.map((val, index) => {
-                  localStorage.setItem(val._id, val.name);
-                  return (
-                    <tr>
-                      <td>{index + 1}</td>
-                      <td>
-                        <Link
-                          to={`/dataset/${val._id}`}
-                          style={{ textDecoration: "none" }}
-                        >
-                          {val.name}
-                        </Link>{" "}
-                        <Badge variant="success">{val.data_type}</Badge>
-                      </td>
-                      <td>{val.description}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </Table>
+          <Row>
+            <Col as={Card} body className="p-0">
+              <h3>All Dataset</h3>
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {datasets.map((val, index) => {
+                    localStorage.setItem(val._id, val.name);
+                    return (
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>
+                          <Link
+                            to={
+                              val.data_type == "number"
+                                ? `/dataset/${val._id}`
+                                : `/imagelist/${val._id}`
+                            }
+                            style={{ textDecoration: "none" }}
+                          >
+                            {val.name}
+                          </Link>{" "}
+                          <Badge
+                            variant={
+                              val.data_type == "number" ? "success" : "dark"
+                            }
+                          >
+                            {val.data_type}
+                          </Badge>
+                        </td>
+                        <td>{val.description}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </Table>
+            </Col>
           </Row>
           <Row className="mt-2">
             <Col md={9}></Col>
@@ -129,80 +141,78 @@ export default function Dashboard() {
             </Col>
           </Row>
           <Row className="mt-3">
-            <Col as={Card}>
-              <Card.Body>
-                <Container>
-                  <Row>
-                    <Col>
-                      <h3>All Devices</h3>
-                    </Col>
-                    <Col>
-                      <Button variant="success" className="float-right mb-3">
-                        <FontAwesomeIcon icon={faPlusSquare} /> Add a new device
-                      </Button>
-                    </Col>
-                  </Row>
-                </Container>
+            <Col as={Card} body className="p-0">
+              <Container>
+                <Row>
+                  <Col>
+                    <h3>All Devices</h3>
+                  </Col>
+                  <Col>
+                    <Button variant="success" className="float-right mb-3">
+                      <FontAwesomeIcon icon={faPlusSquare} /> Add a new device
+                    </Button>
+                  </Col>
+                </Row>
+              </Container>
 
-                <Table striped bordered hover>
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Name</th>
-                      <th>Description</th>
-                      <th>Last Heartbeat</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {devices.map((dev, index) => {
-                      const lastHeartbeatWIB = new Date(dev.last_heartbeat);
-                      const nowTime = new Date();
-                      return (
-                        <tr>
-                          <td>{index + 1}</td>
-                          <td>{dev.name}</td>
-                          <td>{dev.description}</td>
-                          <td>
-                            {lastHeartbeatWIB.toLocaleString()}{" "}
-                            <Badge variant="primary">
-                              {dev.firmware_version}
-                            </Badge>{" "}
-                            {(nowTime - lastHeartbeatWIB) / 1000 / 60 > 15 ? (
-                              <Badge variant="warning">Offline</Badge>
-                            ) : (
-                              <Badge variant="success">Online</Badge>
-                            )}
-                          </td>
-                          <td>
-                            <Dropdown>
-                              <Dropdown.Toggle variant="info">
-                                Action
-                              </Dropdown.Toggle>
-                              <Dropdown.Menu>
-                                <Dropdown.Item
-                                  data-device-id={dev._id}
-                                  data-device-name={dev.name}
-                                  onClick={deleteDevice}
-                                >
-                                  <FontAwesomeIcon icon={faTrash} /> Delete
-                                </Dropdown.Item>
-                                <Dropdown.Item
-                                  data-device-id={dev._id}
-                                  data-device-name={dev.name}
-                                  onClick={renameDevice}
-                                >
-                                  <FontAwesomeIcon icon={faPen} /> Rename
-                                </Dropdown.Item>
-                              </Dropdown.Menu>
-                            </Dropdown>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </Table>
-              </Card.Body>
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Last Heartbeat</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {devices.map((dev, index) => {
+                    const lastHeartbeatWIB = new Date(dev.last_heartbeat);
+                    const nowTime = new Date();
+                    return (
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>{dev.name}</td>
+                        <td>{dev.description}</td>
+                        <td>
+                          {lastHeartbeatWIB.toLocaleString()}{" "}
+                          <Badge variant="primary">
+                            {dev.firmware_version}
+                          </Badge>{" "}
+                          {(nowTime - lastHeartbeatWIB) / 1000 / 60 > 15 ? (
+                            <Badge variant="warning">Offline</Badge>
+                          ) : (
+                            <Badge variant="success">Online</Badge>
+                          )}
+                        </td>
+                        <td>
+                          <Dropdown>
+                            <Dropdown.Toggle variant="info">
+                              Action
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                              <Dropdown.Item
+                                data-device-id={dev._id}
+                                data-device-name={dev.name}
+                                onClick={deleteDevice}
+                              >
+                                <FontAwesomeIcon icon={faTrash} /> Delete
+                              </Dropdown.Item>
+                              <Dropdown.Item
+                                data-device-id={dev._id}
+                                data-device-name={dev.name}
+                                onClick={renameDevice}
+                              >
+                                <FontAwesomeIcon icon={faPen} /> Rename
+                              </Dropdown.Item>
+                            </Dropdown.Menu>
+                          </Dropdown>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </Table>
             </Col>
           </Row>
         </Container>
