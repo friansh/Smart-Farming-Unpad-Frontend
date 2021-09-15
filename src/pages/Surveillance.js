@@ -60,7 +60,7 @@ export default function Surveillance() {
                 <img
                   src={image}
                   className="float-center"
-                  style={{ borderStyle: "inset" }}
+                  style={{ borderStyle: "inset", maxWidth: "100%" }}
                 />
               </div>
             </Col>
