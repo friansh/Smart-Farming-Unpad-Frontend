@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Surveillance from "./pages/Surveillance";
 import Imagelist from "./pages/Imagelist";
 import Dashboard from "./pages/Dashboard";
+import Controls from "./pages/Controls";
 import Document from "./pages/Document";
 import Dataset from "./pages/Dataset";
 import Login from "./pages/Login";
@@ -13,6 +14,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/login" children={<Login />} />
+        <Route path="/controls/:device_id" children={<Controls />} />
         <Route
           path="/surveillance/:dataset_id/:device_id"
           children={<Surveillance />}

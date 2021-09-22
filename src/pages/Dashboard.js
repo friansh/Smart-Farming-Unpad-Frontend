@@ -167,12 +167,20 @@ export default function Dashboard() {
                 </thead>
                 <tbody>
                   {devices.map((dev, index) => {
+                    localStorage.setItem(dev.id, dev.name);
                     const lastHeartbeatWIB = new Date(dev.last_heartbeat);
                     const nowTime = new Date();
                     return (
                       <tr key={index}>
                         <td>{index + 1}</td>
-                        <td>{dev.name}</td>
+                        <td>
+                          <Link
+                            to={`/controls/${dev.id}`}
+                            style={{ textDecoration: "none" }}
+                          >
+                            {dev.name}
+                          </Link>
+                        </td>
                         <td>{dev.description}</td>
                         <td>
                           {lastHeartbeatWIB.toLocaleString()}{" "}
@@ -192,14 +200,14 @@ export default function Dashboard() {
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                               <Dropdown.Item
-                                data-device-id={dev._id}
+                                data-device-id={dev.id}
                                 data-device-name={dev.name}
                                 onClick={deleteDevice}
                               >
                                 <FontAwesomeIcon icon={faTrash} /> Delete
                               </Dropdown.Item>
                               <Dropdown.Item
-                                data-device-id={dev._id}
+                                data-device-id={dev.id}
                                 data-device-name={dev.name}
                                 onClick={renameDevice}
                               >
