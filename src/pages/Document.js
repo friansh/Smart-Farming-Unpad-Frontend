@@ -23,7 +23,7 @@ import Swal from "sweetalert2";
 export default function Document() {
   const { dataset_id, device_id } = useParams();
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({labels: [], datasets:[{data: []}]});
   const [deviceName, setDeviceName] = useState("");
   const [datasetName, setDatasetName] = useState("");
   const [mapFromLow, setMapFromLow] = useState("");
