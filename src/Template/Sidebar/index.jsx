@@ -1,5 +1,5 @@
 import Logo from "../../Assets/logo.png";
-import User from "admin-lte/dist/img/user2-160x160.jpg";
+import User from "../../Assets/user.jpeg";
 
 import { Link } from "react-router-dom";
 
@@ -79,8 +79,17 @@ export default function Sidebar(props) {
                 <p>Dataset</p>
               </Link>
             </li>
-            <li className="nav-item">
-              <a href="#" className="nav-link">
+            <li
+              className={`nav-item ${
+                props.page == Pages.Control.List ? "menu-open" : null
+              }`}
+            >
+              <a
+                href="#"
+                className={`nav-link ${
+                  props.page == Pages.Control.List ? "active" : null
+                }`}
+              >
                 <i className="nav-icon fa-solid fa-toggle-on" />
                 <p>
                   Control
@@ -89,7 +98,12 @@ export default function Sidebar(props) {
               </a>
               <ul className="nav nav-treeview">
                 <li className="nav-item">
-                  <Link to="/control/list" className="nav-link">
+                  <Link
+                    to="/control/list"
+                    className={`nav-link ${
+                      props.page == Pages.Control.List ? "active" : null
+                    }`}
+                  >
                     <i className="fa-solid fa-list-ul nav-icon" />
                     <p>List</p>
                   </Link>
