@@ -12,19 +12,33 @@ export default function Device(props) {
   const { dataset_id } = useParams();
 
   useEffect(() => {
-    axios.get(`/dataset/${dataset_id}/device`).then((response) => {
-      setDevices(response.data);
-      console.log(response.data);
-    });
+    axios
+      .get(`/dataset/${dataset_id}/device`)
+      .then((response) => {
+        setDevices(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => console.log(error.response));
   }, [dataset_id]);
 
   return (
     <Template
       title={`Dataset ${dataset_id}`}
       userName="Fikri Rida P"
-      page={Pages.Control.List}
+      page={Pages.Dataset}
     >
       <div className="container-fluid">
+        {devices.length == 0 ? (
+          <div className="row">
+            <div className="col">
+              <div className="alert alert-warning" role="alert">
+                <i class="fa-regular fa-folder-open mr-2" />
+                There is no data from any device.
+              </div>
+            </div>
+          </div>
+        ) : null}
+
         <div class="row">
           <div class="col-12">
             <div class="card">
