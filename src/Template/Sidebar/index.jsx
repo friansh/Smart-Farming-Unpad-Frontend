@@ -25,6 +25,7 @@ export default function Sidebar(props) {
         />
         <span className="brand-text font-weight-light">Smart Farming</span>
       </NavLink>
+
       {/* Sidebar */}
       <div className="sidebar">
         {/* Sidebar user panel (optional) */}
@@ -38,22 +39,7 @@ export default function Sidebar(props) {
             </NavLink>
           </div>
         </div>
-        {/* SidebarSearch Form */}
-        <div className="form-inline">
-          <div className="input-group" data-widget="sidebar-search">
-            <input
-              className="form-control form-control-sidebar"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <div className="input-group-append">
-              <button className="btn btn-sidebar">
-                <i className="fas fa-search fa-fw" />
-              </button>
-            </div>
-          </div>
-        </div>
+
         {/* Sidebar Menu */}
         <nav className="mt-2">
           <ul
@@ -86,48 +72,29 @@ export default function Sidebar(props) {
                 <p>Dataset</p>
               </NavLink>
             </li>
-            <li
-              className={`nav-item ${
-                props.page == Pages.Control.List ? "menu-open" : null
-              }`}
-            >
-              <a
-                href="#"
-                className={`nav-link ${
+            <li className="nav-header">Control</li>
+            <li className="nav-item">
+              <NavLink
+                to="/control/list"
+                className={`nav-link sidebar-toggle-btn ${
                   props.page == Pages.Control.List ? "active" : null
                 }`}
               >
-                <i className="nav-icon fa-solid fa-toggle-on" />
-                <p>
-                  Control
-                  <i className="fas fa-angle-left right" />
-                </p>
+                <i className="fa-solid fa-list-ul nav-icon" />
+                <p>List</p>
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <a href="pages/UI/icons.html" className="nav-link">
+                <i className="fa-solid fa-pen-to-square nav-icon" />
+                <p>Assign</p>
               </a>
-              <ul className="nav nav-treeview">
-                <li className="nav-item">
-                  <NavLink
-                    to="/control/list"
-                    className={`nav-link sidebar-toggle-btn ${
-                      props.page == Pages.Control.List ? "active" : null
-                    }`}
-                  >
-                    <i className="fa-solid fa-list-ul nav-icon" />
-                    <p>List</p>
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <a href="pages/UI/icons.html" className="nav-link">
-                    <i className="fa-solid fa-pen-to-square nav-icon" />
-                    <p>Assign</p>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a href="pages/UI/icons.html" className="nav-link">
-                    <i className="fa-solid fa-clock-rotate-left nav-icon" />
-                    <p>History</p>
-                  </a>
-                </li>
-              </ul>
+            </li>
+            <li className="nav-item">
+              <a href="pages/UI/icons.html" className="nav-link">
+                <i className="fa-solid fa-clock-rotate-left nav-icon" />
+                <p>History</p>
+              </a>
             </li>
 
             <li className="nav-header">Device Management</li>
