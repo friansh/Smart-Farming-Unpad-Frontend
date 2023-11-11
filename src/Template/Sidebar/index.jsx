@@ -1,9 +1,16 @@
 import Logo from "../../Assets/logo.png";
 import User from "../../Assets/user.jpeg";
 
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import Pages from "../../Constants/Pages.json";
+
+import $ from "jquery";
+
+$(document).ready(() => {
+  $("body").Layout();
+  $(".sidebar-toggle-btn").PushMenu();
+});
 
 export default function Sidebar(props) {
   return (
@@ -56,28 +63,30 @@ export default function Sidebar(props) {
             data-accordion="false"
           >
             <li className="nav-item">
-              <Link
+              <NavLink
                 to="/"
-                className={`nav-link ${
+                className={`nav-link sidebar-toggle-btn ${
                   props.page == Pages.Dashboard ? "active" : null
                 }`}
+                data-widget="pushmenu"
               >
                 <i className="nav-icon fas fa-tachometer-alt"></i>
                 <p>Dashboard</p>
-              </Link>
+              </NavLink>
             </li>
 
             <li className="nav-header">Data Management</li>
             <li className="nav-item">
-              <Link
+              <NavLink
                 to="/dataset"
-                className={`nav-link ${
+                className={`nav-link sidebar-toggle-btn ${
                   props.page == Pages.Dataset ? "active" : null
                 }`}
+                data-widget="pushmenu"
               >
                 <i className="nav-icon fa-solid fa-chart-line" />
                 <p>Dataset</p>
-              </Link>
+              </NavLink>
             </li>
             <li
               className={`nav-item ${
@@ -98,15 +107,16 @@ export default function Sidebar(props) {
               </a>
               <ul className="nav nav-treeview">
                 <li className="nav-item">
-                  <Link
+                  <NavLink
                     to="/control/list"
-                    className={`nav-link ${
+                    className={`nav-link sidebar-toggle-btn ${
                       props.page == Pages.Control.List ? "active" : null
                     }`}
+                    data-widget="pushmenu"
                   >
                     <i className="fa-solid fa-list-ul nav-icon" />
                     <p>List</p>
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
                   <a href="pages/UI/icons.html" className="nav-link">
@@ -125,16 +135,20 @@ export default function Sidebar(props) {
 
             <li className="nav-header">Device Management</li>
             <li className="nav-item">
-              <Link to="/device" className={`nav-link`}>
+              <NavLink
+                to="/device"
+                className={`nav-link sidebar-toggle-btn`}
+                data-widget="pushmenu"
+              >
                 <i className="nav-icon fa-solid fa-microchip" />
                 <p>Device</p>
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link to="/teachers" className={`nav-link`}>
+              <NavLink to="/teachers" className={`nav-link`}>
                 <i className="nav-icon fa-solid fa-upload" />
                 <p>Firmware</p>
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>
