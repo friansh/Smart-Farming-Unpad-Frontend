@@ -1,22 +1,22 @@
 import Logo from "../../Assets/logo.png";
 import User from "../../Assets/user.jpeg";
 
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import Pages from "../../Constants/Pages.json";
 
 import $ from "jquery";
-
-$(document).ready(() => {
-  $("body").Layout();
-  $(".sidebar-toggle-btn").PushMenu();
-});
+import { useEffect } from "react";
 
 export default function Sidebar(props) {
+  useEffect(() => {
+    $(".sidebar-toggle-btn").PushMenu();
+  });
+
   return (
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
       {/* Brand Logo */}
-      <Link to="/" className="brand-link">
+      <NavLink to="/" className="brand-link">
         <img
           src={Logo}
           alt="AdminLTE Logo"
@@ -24,7 +24,7 @@ export default function Sidebar(props) {
           style={{ opacity: ".8" }}
         />
         <span className="brand-text font-weight-light">Smart Farming</span>
-      </Link>
+      </NavLink>
       {/* Sidebar */}
       <div className="sidebar">
         {/* Sidebar user panel (optional) */}
@@ -33,9 +33,9 @@ export default function Sidebar(props) {
             <img src={User} className="img-circle elevation-2" alt="User" />
           </div>
           <div className="info">
-            <Link to="/" className="d-block">
+            <NavLink to="/" className="d-block">
               {props.userName}
-            </Link>
+            </NavLink>
           </div>
         </div>
         {/* SidebarSearch Form */}
@@ -68,7 +68,6 @@ export default function Sidebar(props) {
                 className={`nav-link sidebar-toggle-btn ${
                   props.page == Pages.Dashboard ? "active" : null
                 }`}
-                data-widget="pushmenu"
               >
                 <i className="nav-icon fas fa-tachometer-alt"></i>
                 <p>Dashboard</p>
@@ -82,7 +81,6 @@ export default function Sidebar(props) {
                 className={`nav-link sidebar-toggle-btn ${
                   props.page == Pages.Dataset ? "active" : null
                 }`}
-                data-widget="pushmenu"
               >
                 <i className="nav-icon fa-solid fa-chart-line" />
                 <p>Dataset</p>
@@ -112,7 +110,6 @@ export default function Sidebar(props) {
                     className={`nav-link sidebar-toggle-btn ${
                       props.page == Pages.Control.List ? "active" : null
                     }`}
-                    data-widget="pushmenu"
                   >
                     <i className="fa-solid fa-list-ul nav-icon" />
                     <p>List</p>
@@ -135,17 +132,13 @@ export default function Sidebar(props) {
 
             <li className="nav-header">Device Management</li>
             <li className="nav-item">
-              <NavLink
-                to="/device"
-                className={`nav-link sidebar-toggle-btn`}
-                data-widget="pushmenu"
-              >
+              <NavLink to="/device" className={`nav-link sidebar-toggle-btn`}>
                 <i className="nav-icon fa-solid fa-microchip" />
                 <p>Device</p>
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/teachers" className={`nav-link`}>
+              <NavLink to="/teachers" className={`nav-link sidebar-toggle-btn`}>
                 <i className="nav-icon fa-solid fa-upload" />
                 <p>Firmware</p>
               </NavLink>
