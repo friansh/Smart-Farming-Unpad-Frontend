@@ -20,11 +20,6 @@ export default function Footer() {
           <b>Version</b> 0.0.1
         </div>
       </footer>
-      {/* Control Sidebar */}
-      <aside className="control-sidebar control-sidebar-dark">
-        {/* Control sidebar content goes here */}
-      </aside>
-      {/* /.control-sidebar */}
     </>
   );
 }
